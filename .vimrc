@@ -1,3 +1,5 @@
+" vim:foldmethod=marker:foldlevel=0
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -45,8 +47,12 @@ set number                      " Show line numbers
 set autochdir                   " cd into the current file's directory
 set lazyredraw                  " Don't redraw unless we have to
 set laststatus=2                " Required for Powerline
+"}}}
+
+"{{{ Plugin settings
 let g:NERDTreeWinSize=25        " Slightly narrower nerd tree
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=1 " Nice fonts for airline
+let g:airline_detect_modified=1 " Visualize modified files
 "}}}
 
 "{{{ Backup and swap
@@ -106,7 +112,7 @@ set softtabstop=4               " Make spaces feel like tabs
 set expandtab                   " Spaces for tabs
 set nowrap                      " Don't soft wrap long lines
 set list                        " Show invisible characters
-set listchars=tab:>·,trail:·    " ... but only show tabs and trailing whitespace
+set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮  " ... but only show tabs and trailing whitespace
 "}}}
 
 "{{{ Look and feel
@@ -117,6 +123,9 @@ set background=dark         " When set to "dark", Vim will try to use colors tha
                             " good on a dark background. When set to "light", Vim will
                             " try to use colors that look good on a light background.
                             " Any other value is illegal.
+set foldenable              " Enable folds by default
+set foldmethod=syntax       " Fold via syntax of files
+set foldlevelstart=99       " Open all folds by default
 "}}}
 
 "{{{ Key mappings
@@ -176,5 +185,3 @@ nnoremap <Leader>g :Goyo<CR>
 " Toggle Nerd Tree with Ctrl-E
 map <C-E> :NERDTreeToggle<CR>
 "}}}
-
-" vim:foldmethod=marker:foldlevel=0
