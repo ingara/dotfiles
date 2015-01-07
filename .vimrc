@@ -30,6 +30,7 @@ Bundle 'chriskempson/base16-vim'
 Bundle 'junegunn/goyo.vim'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
