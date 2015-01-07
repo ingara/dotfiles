@@ -26,7 +26,8 @@ Bundle 'plasticboy/vim-markdown'
 Bundle 'tpope/vim-surround'
 Bundle 'chriskempson/base16-vim'
 Bundle 'junegunn/goyo.vim'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -45,6 +46,7 @@ set autochdir                   " cd into the current file's directory
 set lazyredraw                  " Don't redraw unless we have to
 set laststatus=2                " Required for Powerline
 let g:NERDTreeWinSize=25        " Slightly narrower nerd tree
+let g:airline_powerline_fonts=1
 "}}}
 
 "{{{ Backup and swap
