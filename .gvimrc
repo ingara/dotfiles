@@ -5,7 +5,7 @@ set cursorline
 set guioptions=em
 
 " Set font
-set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10:cANSI
 
 set background=dark
 
