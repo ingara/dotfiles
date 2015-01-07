@@ -124,19 +124,39 @@ set background=dark         " When set to "dark", Vim will try to use colors tha
 " Space for president
 let mapleader = "\<Space>"
 
-" Easy split window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+" Left/right arrow keys to switch buffers
+nnoremap <left> :bprev<CR>
+nnoremap <right> :bnext<CR>
 
-" Enter to dismiss highlighting
+" Up/down arrow keys to switch tabs
+nnoremap <up> :tabnext<CR>
+nnoremap <down> :tabprev<CR>
+
+" Move cursor in insert mode
+inoremap <C-h> <left>
+inoremap <C-l> <right>
+inoremap <C-k> <up>
+inoremap <C-j> <down>
+
+" Easy split window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Split windows with leader + v/s
+nnoremap <leader>v <C-w>v<C-w>l
+nnoremap <leader>s <C-w>s
+
+" Space to dismiss highlighting
 nnoremap <CR> :noh<CR><CR>
 
 " Keep search matches in the middle of the window and pulse the line when
 " moving to them.
-nnoremap n nzzzv
-nnoremap N Nzzzv
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
 
 " Copy and paste from system clipboard with y and p
 vmap <Leader>y "+y
@@ -145,6 +165,10 @@ nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
+
+" Reselect visual block after indent
+vnoremap < <gv
+vnoremap > >gv
 
 " Map Goyo
 nnoremap <Leader>g :Goyo<CR>
