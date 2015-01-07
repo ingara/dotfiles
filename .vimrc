@@ -113,7 +113,6 @@ set listchars=tab:>·,trail:·    " ... but only show tabs and trailing whitespa
 set scrolloff=3             " Keep at least 3 lines above/below caret
 set sidescrolloff=3         " ... and 3 to the left/right
 syntax on                   " Syntax highlighting yay
-let maplocalleader=','      " , is best leader
 set background=dark         " When set to "dark", Vim will try to use colors that look
                             " good on a dark background. When set to "light", Vim will
                             " try to use colors that look good on a light background.
@@ -122,19 +121,30 @@ set background=dark         " When set to "dark", Vim will try to use colors tha
 
 "{{{ Key mappings
 
+" Space for president
+let mapleader = "\<Space>"
+
 " Easy split window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Space to dismiss highlighting
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+" Enter to dismiss highlighting
+nnoremap <CR> :noh<CR><CR>
 
 " Keep search matches in the middle of the window and pulse the line when
 " moving to them.
 nnoremap n nzzzv
 nnoremap N Nzzzv
+
+" Copy and paste from system clipboard with y and p
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
 
 " Map Goyo
 nnoremap <Leader>g :Goyo<CR>
