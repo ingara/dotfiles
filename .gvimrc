@@ -5,7 +5,7 @@ set cursorline
 set guioptions=em
 
 " Set font
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10:cANSI
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 
 set background=dark
 
