@@ -1,73 +1,45 @@
 " vim:foldmethod=marker:foldlevel=0
 
-filetype off                  " required
+set nocompatible
 
 "{{{ Plugins
+filetype off
 
-" NeoBundle stuff
-if has('vim_starting')
-    if &compatible
-        set nocompatible               " Be iMproved
-    endif
+" Start vim-plug
+silent! if plug#begin('~/.vim/plugged')
 
-    " Required:
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+Plug 'Shougo/vimproc.vim', {'do': 'make' }
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neomru.vim'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'scrooloose/syntastic'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'groenewege/vim-less'
+Plug 'plasticboy/vim-markdown'
+Plug 'chriskempson/base16-vim'
+Plug 'junegunn/goyo.vim'
+Plug 'bling/vim-airline'
+Plug 'moll/vim-node', {'for': 'javascript'}
+Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
+Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
+
+call plug#end()
 endif
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Vundle help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make -f make_mac.mak',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\    },
-\ }
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'tpope/vim-vinegar'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'junegunn/goyo.vim'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'mxw/vim-jsx'
-
-" All of your Plugins must be added before the following line
-call neobundle#end()         " required
-filetype plugin indent on    " required
-
+filetype plugin indent on
 "}}}
 
 "{{{ Misc
-set ruler                       " Show line and column numbers in status bar
 set mouse=a                     " Enable the use of the mouse.
-set backspace=indent,eol,start  " Allow backspacing over everything in insert mode
 set encoding=utf-8              " Best encoding is best
-set autoread                    " Watch for file changes
 set number                      " Show line numbers
 set autochdir                   " cd into the current file's directory
 set lazyredraw                  " Don't redraw unless we have to
-set laststatus=2                " Required for Powerline
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -88,6 +60,7 @@ let g:neocomplete#enable_smart_case = 1                     " smartcase
 let g:neocomplete#sources#syntax#min_keyword_length = 3     " Start matching on 3 characters
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])   " Fuzzy matching in unite
+call unite#custom#profile('default', 'context', { 'marked_icon':'✓'}) " Pretty icon for unite
 let g:unite_source_history_yank_enable = 1                  " Enable searching yankring in unite
 if executable('ag')                                         " Use ag for unite if it exists
     let g:unite_source_rec_async_command= 'ag --nocolor --nogroup --hidden -g ""'
@@ -139,13 +112,11 @@ endif
 
 "{{{ Searching
 set hlsearch                    " Highlight search matches 
-set incsearch                   " Incremental search matching
 set ignorecase                  " Ignore case when searching
 set smartcase                   " Don't ignore case when search pattern contains upper case characters
 "}}}
 
 "{{{ Whitespace stuff
-set autoindent                  " When starting a new line, use the same indent as the current one
 set tabstop=4                   " 4 spaces for tabs
 set shiftwidth=4                " 4 spaces for each (auto)indent
 set softtabstop=4               " Make spaces feel like tabs
@@ -263,7 +234,3 @@ endfunction
 autocmd FileType unite call s:unite_settings()
 "}}}
 "}}}
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
