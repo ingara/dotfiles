@@ -3,33 +3,46 @@
 set nocompatible
 
 "{{{ Plugins
-filetype off
+if has('vim_starting')
+    if &compatible
+        set nocompatible               " Be iMproved
+    endif
 
-" Start vim-plug
-silent! if plug#begin('~/.vim/plugged')
-
-Plug 'Shougo/vimproc.vim', {'do': 'make' }
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/neomru.vim'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'scrooloose/syntastic'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'groenewege/vim-less'
-Plug 'plasticboy/vim-markdown'
-Plug 'chriskempson/base16-vim'
-Plug 'junegunn/goyo.vim'
-Plug 'bling/vim-airline'
-Plug 'moll/vim-node', {'for': 'javascript'}
-Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
-Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
-
-call plug#end()
+    " Required:
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'tpope/vim-sensible'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'junegunn/goyo.vim'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'moll/vim-node'
+NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
+
+call neobundle#end()
 
 filetype plugin indent on
 "}}}
@@ -234,3 +247,7 @@ endfunction
 autocmd FileType unite call s:unite_settings()
 "}}}
 "}}}
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
