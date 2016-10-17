@@ -10,6 +10,6 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 set background=dark
 
 try
-    colorscheme base16-tomorrow
+    colorscheme nova
 catch
 endtry

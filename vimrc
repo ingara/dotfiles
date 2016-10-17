@@ -31,16 +31,23 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'junegunn/goyo.vim'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'moll/vim-node'
+
+" Syntax highlighting
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'junegunn/goyo.vim'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'moll/vim-node'
+NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
+
+" Color schemes
+NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
 
 call neobundle#end()
 
@@ -51,6 +58,7 @@ filetype plugin indent on
 set mouse=a                     " Enable the use of the mouse.
 set encoding=utf-8              " Best encoding is best
 set number                      " Show line numbers
+set relativenumber              " Relative line numbers
 set autochdir                   " cd into the current file's directory
 set lazyredraw                  " Don't redraw unless we have to
 
