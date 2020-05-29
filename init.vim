@@ -61,6 +61,7 @@ endif
       "}}}
     Plug 'vim-airline/vim-airline-themes'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'christoomey/vim-tmux-navigator'
   "}}}
 
   "{{{ Languages
@@ -214,8 +215,8 @@ set foldlevelstart=99       " Open all folds by default
 set splitright              " Horizontal splits open to the right
 set splitbelow              " Vertical splits open below
 set cursorline
-set background=dark         " Look nice
-colorscheme nova
+" set background=dark         " Look nice
+" colorscheme nova
 " colorscheme base16-ocean
 highlight clear LineNr
 "}}}
@@ -240,18 +241,18 @@ inoremap <C-k> <up>
 inoremap <C-j> <down>
 
 " Easy split window navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
 
-if has('nvim') " Window navigations in terminal mode
-    tnoremap <C-h> <C-\><C-n><C-w>h
-    tnoremap <C-j> <C-\><C-n><C-w>j
-    tnoremap <C-k> <C-\><C-n><C-w>k
-    tnoremap <C-l> <C-\><C-n><C-w>l
-    tnoremap <ESC> <C-\><C-n>
-endif
+" if has('nvim') " Window navigations in terminal mode
+"     tnoremap <C-h> <C-\><C-n><C-w>h
+"     tnoremap <C-j> <C-\><C-n><C-w>j
+"     tnoremap <C-k> <C-\><C-n><C-w>k
+"     tnoremap <C-l> <C-\><C-n><C-w>l
+"     tnoremap <ESC> <C-\><C-n>
+" endif
 
 " Split windows with leader + v/s
 nnoremap <leader>v <C-w>v<C-w>l

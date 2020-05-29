@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+# general space settings
+yabai -m config layout                       bsp
+yabai -m config top_padding                  20
+yabai -m config bottom_padding               20
+yabai -m config left_padding                 20
+yabai -m config right_padding                20
+yabai -m config window_gap                   10
+
+# float space 1 and 2 (laptop screen)
+
+yabai -m config --space 1 layout float
+yabai -m config --space 2 layout float
+
+# Emacs fix
+
+yabi -m rule --add app=Emacs manage=on
+
+echo "yabai configuration loaded.."

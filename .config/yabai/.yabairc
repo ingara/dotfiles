@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+# general space settings
+yabai -m config layout                       bsp
+
+yabai -m config top_padding                  1
+yabai -m config bottom_padding               1
+yabai -m config left_padding                 1
+yabai -m config right_padding                1
+
+yabai -m config window_gap                   5
+
+# Space 1 floating
+yabai -m config --space 2 layout float
+
+echo "yabai configuration loaded.."

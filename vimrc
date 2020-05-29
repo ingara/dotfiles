@@ -34,6 +34,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'junegunn/goyo.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'moll/vim-node'
+NeoBundle 'christoomey/vim-tmux-navigator'
 
 " Syntax highlighting
 NeoBundle 'scrooloose/syntastic'
