@@ -6,15 +6,9 @@
 cd "$(dirname "${BASH_SOURCE}")";
 
 function doIt() {
-	rsync --exclude ".git/" \
-		--exclude ".DS_Store" \
-		--exclude "setup-macos.sh" \
-		--exclude "brew.sh" \
-		--exclude "bootstrap.sh" \
-		--exclude "README.md" \
-		-avh --no-perms . ~;
-	source ~/.bash_profile;
-
+  for file in $(find . -type f | grep -vE '\.exclude*|\.git/*|\.gitignore|.sh$|.*.md$'); do
+    ln -sfv "$PWD/$file" ~/"$file"
+  done
 
   # generate a new, strong rsa ssh key
   ssh-keygen -t rsa -b 4096
@@ -38,13 +32,16 @@ function doIt() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"ash -c "`curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install`"
   brew analytics off
 
+  ./brew.sh
+  ./setup-macos.sh
+
   # Install Oh-My-Zsh
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-  ./brew.sh
-  ./setup-macos.sh
+  # Spacemacs!
   git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
+  # Start services
   brew services start yabai
   brew services start skhd
 }
