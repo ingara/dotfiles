@@ -2,3 +2,26 @@ source ~/.config/nvim/init.vim
 
 set surround
 set commentary
+
+" mappings
+"nnoremap <leader> <Nop>
+map <leader>r :action RenameElement<CR>
+map gR :action RenameElement<CR>
+map gb :action ToggleLineBreakpoint<CR>
+map gd :action GotoDeclaration<CR>
+map gi :action GotoImplementation<CR>
+map gs :action GotoSuperMethod<CR>
+map gn :action GotoNextError<CR>
+map gr :action FindUsages<CR>
+map <leader>f :action FindInPath<CR>
+map <leader>n :action NewFile<CR>
+map <leader>s :action Stop<CR>
+map <leader>d :action Debug<CR>
+map <leader>e :action ShowExecutionPoint<CR>
+" map <leader>- :action SplitHorizontally<CR>
+" map <leader>. :action SplitVertically<CR>
+" map <leader>a :action Annotate<CR>
+map <leader><leader> :action ToggleDistractionFreeMode<CR>
+" map <leader>l :action OpenEditorInOppositeTabGroup<CR>
+" map <leader>b :action RebuildSolutionAction<CR>
+" map <leader>p :action Javascript.Linters.EsLint.Fix<CR>
