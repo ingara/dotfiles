@@ -119,6 +119,15 @@ alias redis-commander="docker run --rm --name redis-commander -d \
   --env REDIS_HOSTS=local:localhost:6379,myredis:10.10.20.30 \
   -p 8081:8081 \
   rediscommander/redis-commander:latest"
+ts() {
+  if [ -n "$1" ]
+  then
+    tmux attach -t "$1" || tmux new -s "$1"
+  else
+    echo "Must pass session name"
+  fi
+}
+
 
 #### FZF ####
 
