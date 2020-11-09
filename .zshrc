@@ -133,6 +133,19 @@ ts() {
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Use ripgrep
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+bindkey "ç" fzf-cd-widget
+
+# tmux
+# FZF_TMUX_OPTS='-d 40%'
+
+# Press F1 to open the file with less without leaving fzf
+# Press CTRL-Y to copy the line to clipboard and aborts fzf (requires pbcopy)
+# fzf --bind 'f1:execute(less -f {}),ctrl-y:execute-silent(echo {} | pbcopy)+abort'
+
+#### Iterm
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 #### nvm
