@@ -124,5 +124,8 @@ brew cask install notion
 brew cask install spotify
 brew cask install lastpass
 
+# powerlevel10k prompt
+brew install romkatv/powerlevel10k/powerlevel10k
+
 # Remove outdated versions from the cellar.
 brew cleanup
