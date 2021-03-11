@@ -4,3 +4,5 @@ for file in $(find . -type f | grep -vE '\.exclude*|\.git/*|\.gitignore|\.sh$|.*
   ln -sfv "$PWD/$file" ~/"$file"
 done
 
+ln -sfv "$PWD/bin" ~/bin
+

@@ -92,7 +92,8 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_CTYPE=UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -130,6 +131,13 @@ ts() {
     echo "Must pass session name"
   fi
 }
+alias lprw="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+alias kubectl="kubecolor"
+# to fix kubectl autocompletion
+complete -o default -F __start_kubectl kubecolor
+
+# Open magit in current dir from CLI
+alias mg='emacsclient -nw -c --eval '"'"'(progn (let ((display-buffer-alist `(("^\\*magit: " display-buffer-same-window) ,display-buffer-alist))) (magit-status)) (delete-other-windows))'"' "
 
 # Key timeout (default is 0.4 seconds)
 KEYTIMEOUT=1 # 10 ms
@@ -172,3 +180,12 @@ export DISABLE_AUTO_TITLE='true'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
+# zoxide (quick jumping with z)
+eval "$(zoxide init zsh)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/ingaralmklov/.sdkman"
+[[ -s "/Users/ingaralmklov/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ingaralmklov/.sdkman/bin/sdkman-init.sh"
+
+# NAV
+export KUBECONFIG="/Users/ingaralmklov/dev/nav/kubeconfigs/config"

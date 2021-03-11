@@ -10,7 +10,7 @@
   editor = nvim
   filemode = false
 	excludesfile = /Users/ingaralmklov/.gitignore_global
-  pager=less -x4
+  pager=delta
 [color]
   ui = true
 [alias]
@@ -19,7 +19,8 @@
   co = checkout
   cob = checkout -b
   cl = clone
-  ci = commit
+  c = commit
+  ca = commit --amend
   cm = commit -m
   s = status
   st = status -sb
@@ -37,7 +38,7 @@
 
     #Github Flow
   up = !git pull --rebase --prune $@ && git submodule update --init --recursive
-  # bclean does _not work_ on branches that are squas-merged
+  # bclean does _not work_ on branches that are squash-merged
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
   # gprunesquashmerged from https://github.com/not-an-aardvark/git-delete-squashed (modified to use ${1-master})
 	gprunesquashmerged = "!git checkout -q master && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done"
@@ -55,19 +56,15 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
-[diff]
-	tool = p4mergetool
-[merge]
-	tool = p4mergetool
-[mergetool "p4mergetool"]
-	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$LOCAL $PWD/$REMOTE $PWD/$MERGED
-[mergetool]
-	keepBackup = false
-[difftool "p4mergetool"]
-	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
 [rerere]
 	enabled = true
 [credential]
 	helper = osxkeychain
 [init]
 	defaultBranch = main
+
+[delta]
+    features = line-numbers
+
+[delta "magit-delta"]
+    line-numbers = false

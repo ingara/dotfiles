@@ -6,9 +6,9 @@
 cd "$(dirname "${BASH_SOURCE}")";
 
 function doIt() {
-  for file in $(find . -type f | grep -vE '\.exclude*|\.git/*|\.gitignore|.sh$|.*.md$'); do
-    ln -sfv "$PWD/$file" ~/"$file"
-  done
+  ./link-config.sh
+
+  exit 0
 
   # generate a new, strong rsa ssh key
   ssh-keygen -t rsa -b 4096

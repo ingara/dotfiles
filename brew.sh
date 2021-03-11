@@ -116,6 +116,9 @@ brew install tmux
 brew install tree
 brew install htop
 brew install neovim
+brew install zoxide
+brew install romkatv/powerlevel10k/powerlevel10k
+brew install git-delta
 brew cask install alfred
 brew cask install emacs
 brew cask install firefox
@@ -123,9 +126,6 @@ brew cask install iterm2
 brew cask install notion
 brew cask install spotify
 brew cask install lastpass
-
-# powerlevel10k prompt
-brew install romkatv/powerlevel10k/powerlevel10k
 
 # Remove outdated versions from the cellar.
 brew cleanup

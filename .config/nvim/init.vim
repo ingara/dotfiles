@@ -101,11 +101,11 @@ endif
 
   "{{{ Autocompletion, make
     Plug 'Shougo/deoplete.nvim' " {{{
+      " let g:deoplete#enable_smart_case = 1
       let g:deoplete#enable_at_startup = 1
-      let g:deoplete#enable_smart_case = 1
       let g:deoplete#enable_auto_select = 1
       inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<Tab>"
-      inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+      inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
       set completeopt+=noinsert
       " let g:deoplete#sources#syntax#min_keyword_length = 2
       " let g:deoplete#auto_complete_start_length
@@ -126,6 +126,13 @@ endif
   "}}}
 
   call plug#end()
+"}}}
+
+"{{{ Plugin config
+call deoplete#custom#option({
+\ 'auto_complete_delay': 200,
+\ 'smart_case': v:true,
+\ })
 "}}}
 
 "{{{ Misc
@@ -151,26 +158,26 @@ endif
 " Save your backups to a less annoying place than the current directory.
 " If you have .vim-backup in the current directory, it'll use that.
 " Otherwise it saves it to ~/.vim/backup or . if all else fails.
-if isdirectory($HOME . '/.vim/backup') == 0
-  :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
-endif
-set backupdir-=.
-set backupdir+=.
-set backupdir-=~/
-set backupdir^=~/.vim/backup/
-set backupdir^=./.vim-backup/
-set backup
+"   :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
+" if isdirectory($HOME . '/.vim/backup') == 0
+" endif
+" set backupdir-=.
+" set backupdir+=.
+" set backupdir-=~/
+" set backupdir^=~/.vim/backup/
+" set backupdir^=./.vim-backup/
+" set backup
 
 " Save your swp files to a less annoying place than the current directory.
 " If you have .vim-swap in the current directory, it'll use that.
 " Otherwise it saves it to ~/.vim/swap, ~/tmp or .
-if isdirectory($HOME . '/.vim/swap') == 0
-  :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
-endif
-set directory=./.vim-swap//
-set directory+=~/.vim/swap//
-set directory+=~/tmp//
-set directory+=.
+" if isdirectory($HOME . '/.vim/swap') == 0
+"   :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
+" endif
+" set directory=./.vim-swap//
+" set directory+=~/.vim/swap//
+" set directory+=~/tmp//
+" set directory+=.
 
 " viminfo stores the the state of your previous editing session
 " set viminfo+=n~/.vim/viminfo
