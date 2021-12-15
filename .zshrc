@@ -139,6 +139,10 @@ complete -o default -F __start_kubectl kubecolor
 # Open magit in current dir from CLI
 alias mg='emacsclient -nw -c --eval '"'"'(progn (let ((display-buffer-alist `(("^\\*magit: " display-buffer-same-window) ,display-buffer-alist))) (magit-status)) (delete-other-windows))'"' "
 
+alias tls=tmux-lazy-session
+
+alias tf=terraform
+
 # Key timeout (default is 0.4 seconds)
 KEYTIMEOUT=1 # 10 ms
 
@@ -187,5 +191,6 @@ eval "$(zoxide init zsh)"
 export SDKMAN_DIR="/Users/ingaralmklov/.sdkman"
 [[ -s "/Users/ingaralmklov/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ingaralmklov/.sdkman/bin/sdkman-init.sh"
 
-# NAV
-export KUBECONFIG="/Users/ingaralmklov/dev/nav/kubeconfigs/config"
+# Gcloud
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"

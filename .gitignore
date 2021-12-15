@@ -1,2 +1,7 @@
 *.swp
 .DS_Store
+.config/gcloud
+.config/configstore
+.config/nvim/plugin
+.config/gh
+.config/iterm2

@@ -1,67 +1,38 @@
+[include]
+    path = ~/.gitconfig.aliases
 [user]
-	name = Ingar Almklov
-	email = ingara@gmail.com
+  name = Ingar Almklov
+  email = ingara@gmail.com
 [push]
-	default = current
+  default = current
 [pull]
   default = current
   rebase = true
 [core]
   editor = nvim
   filemode = false
-	excludesfile = /Users/ingaralmklov/.gitignore_global
+  excludesfile = /Users/ingaralmklov/.gitignore_global
   pager=delta
+  quotepath=off
 [color]
   ui = true
-[alias]
-  last = log -1 --stat
-  cp = cherry-pick
-  co = checkout
-  cob = checkout -b
-  cl = clone
-  c = commit
-  ca = commit --amend
-  cm = commit -m
-  s = status
-  st = status -sb
-  br = branch
-  d = diff
-  dw = diff -w
-  dc = diff --cached
-  unstage = reset HEAD --
-  lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
-  lgg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
-  ec = config --global -e
-  save = !git add -A && git commit -m 'SAVEPOINT'
-  wip = commit -am "WIP"
-  undo = reset HEAD~1 --mixed
-
-    #Github Flow
-  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
-  # bclean does _not work_ on branches that are squash-merged
-  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
-  # gprunesquashmerged from https://github.com/not-an-aardvark/git-delete-squashed (modified to use ${1-master})
-	gprunesquashmerged = "!git checkout -q master && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done"
-  bdone = "!f() { git checkout ${1-master} && git up && git bclean ; }; f"
-  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
-  alias = config --get-regexp ^alias\\.
-  bup = !git bdone && git co - && git rebase master
-
-  # Restore file from last commit where it existed
-  restore-file = !git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
+  diff = auto
+  status = auto
+  branch = auto
 
 [gui]
   diffopts = -w
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
   required = true
+	process = git-lfs filter-process
 [rerere]
-	enabled = true
+  enabled = true
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
 [delta]
     features = line-numbers

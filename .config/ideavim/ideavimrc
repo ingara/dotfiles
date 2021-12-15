@@ -4,6 +4,9 @@ set surround
 set commentary
 
 " mappings
+nnoremap H _
+nnoremap L $
+
 "nnoremap <leader> <Nop>
 map <leader>r :action RenameElement<CR>
 map gR :action RenameElement<CR>
