@@ -89,7 +89,13 @@
       # show hidden applications as translucent
       showhidden = true;
 
+      # show only open apps
+      static-only = true;
+
+      # autohide instantly
       autohide = true;
+      autohide-delay = "0.0";
+      autohide-time-modifier = "0.4";
 
       orientation = "left";
 

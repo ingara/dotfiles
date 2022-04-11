@@ -31,6 +31,7 @@
       htop
       jq
       nixpkgs-fmt
+      nodejs-16_x
       ripgrep
       terraform
       tldr

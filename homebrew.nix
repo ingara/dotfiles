@@ -32,6 +32,8 @@
       "discord"
       "fig"
       "visual-studio-code"
+      "jetbrains-toolbox"
+      "google-chrome"
     ];
     # Mac App Store
     masApps = {
