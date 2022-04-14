@@ -1,6 +1,3 @@
--- nvim config
-require('plugins')
-
 -- Utils
 local execute = vim.api.nvim_command
 local fn = vim.fn
@@ -31,10 +28,7 @@ vim.g.maplocalleader = " "
 vim.o.guifont = 'PragmataPro Mono liga'
 
 vim.o.termguicolors = true	-- true color support
--- vim.g.nord_contrast = true
--- vim.g.nord_borders = true
 opt('background', 'dark')
-cmd [[colorscheme dracula]]
 
 vim.wo.number = true		-- show line numbers
 vim.o.mouse = 'a'		-- enable mouse mode
@@ -58,47 +52,10 @@ vim.w.list = true		-- show invisible characters
 
 -- Plugin config
 
-vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
-
 local ts = require 'nvim-treesitter.configs'
 ts.setup {
 	ensure_installed = 'maintained', highlight = { enable = true }
 }
-
-local neogit = require('neogit')
-neogit.setup {}
-
-require('lualine').setup {
-	options = {
-		theme = 'nord'
-	}
-}
-
-require('telescope').load_extension('project')
-require('telescope').load_extension('githubcoauthors')
-
-local luadev = require("lua-dev").setup({
-  -- add any options here, or leave empty to use the default settings
-  -- lspconfig = {
-  --   cmd = {"lua-language-server"}
-  -- },
-})
-
-local lspconfig = require('lspconfig')
-lspconfig.sumneko_lua.setup(luadev)
-
--- compe autocompletion
-vim.g.loaded_compe_treesitter = true
-vim.g.loaded_compe_snippets_nvim = true
-vim.g.loaded_compe_spell = true
-vim.g.loaded_compe_tags = true
-vim.g.loaded_compe_ultisnips = true
-vim.g.loaded_compe_vim_lsc = true
-vim.g.loaded_compe_vim_lsp = true
-
--- lightbulb
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
-
 
 -- Keymappings
 map('', '<leader>y', '"+y')       	-- Copy to clipboard in normal, visual, select and operator modes
@@ -115,6 +72,7 @@ map('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<cr>]])
 map('n', '<leader><Space>', [[<cmd>lua require('telescope.builtin').commands()<cr>]])
 map('n', '<C-p>', [[<cmd>lua require'telescope'.extensions.project.project{}<cr>]], {noremap = true, silent = true})
 map('n', '<leader>gc', [[<cmd>lua require'telescope'.extensions.githubcoauthors.coauthors()<cr>]])
+map('n', '<leader>gs', [[<cmd>lua require("telescope").extensions.lazygit.lazygit()<cr>]])
 
 -- LSP
 local on_attach = function(client, bufnr)
@@ -147,25 +105,8 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
--- lspinstall
-require'lspinstall'.setup() -- important
-local servers = require'lspinstall'.installed_servers()
-for _, server in pairs(servers) do
-  require'lspconfig'[server].setup{}
-end
-
 local nvim_lsp = require('lspconfig')
 local servers = { "rust_analyzer", "tsserver" }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup { on_attach = on_attach }
 end
-
--- map('n', 'gr', [[<cmd>lua require('telescope.builtin').lsp_references()<cr>]])
--- map('n', '<A-cr>', [[<cmd>lua require('telescope.builtin').lsp_code_actions()<cr>]])
--- map('v', '<A-cr>', [[<cmd>lua require('telescope.builtin').lsp_range_code_actions()<cr>]])
--- map('v', 'gi', [[<cmd>lua require('telescope.builtin').lsp_implementations()<cr>]])
--- map('v', 'gd', [[<cmd>lua require('telescope.builtin').lsp_definitions()<cr>]])
-
--- Neogit
-map('n', '<leader>gs', [[<cmd>lua require('neogit').open()<cr>]])
-
