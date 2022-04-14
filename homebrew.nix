@@ -14,6 +14,7 @@
     cleanup = "zap"; # "zap" removes manually installed brews and casks
     brews = [
       "tmux-lazy-session"
+      "shopify-cli"
     ];
     casks = [
       # utilities
@@ -34,14 +35,17 @@
       "visual-studio-code"
       "jetbrains-toolbox"
       "google-chrome"
+      "istat-menus"
     ];
     # Mac App Store
     masApps = {
       Fantastical = 975937182;
       "Airmail 5" = 918858936;
     };
+
     taps = [
       "ingara/formulae"
+      "shopify/shopify"
       # default
       "homebrew/bundle"
       "homebrew/cask"

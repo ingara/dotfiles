@@ -35,6 +35,9 @@
       ripgrep
       terraform
       tldr
+      magic-wormhole
+      azure-cli
+      lazygit
     ];
 
     imports = [
