@@ -10,6 +10,7 @@
       dr = "darwin-rebuild";
       tls = "tmux-lazy-session";
       tf = "terraform";
+      lg = "lazygit";
     };
     oh-my-zsh = {
       enable = true;
