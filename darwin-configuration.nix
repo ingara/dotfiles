@@ -46,17 +46,26 @@
     ];
 
     programs = {
+      # https://rycee.gitlab.io/home-manager/options.html#opt-programs.exa.enable
       exa = {
         enable = true;
         enableAliases = true;
       };
 
+      # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
       htop.enable = true;
 
+      # https://rycee.gitlab.io/home-manager/options.html#opt-programs.starship.enable
       starship = {
         # Disable starship until fixed: https://github.com/NixOS/nixpkgs/issues/160876, https://github.com/NixOS/nixpkgs/issues/146349
         enable = false;
         enableZshIntegration = true;
+      };
+
+      # https://rycee.gitlab.io/home-manager/options.html#opt-programs.direnv.enable
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
       };
     };
 
