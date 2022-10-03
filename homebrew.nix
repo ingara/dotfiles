@@ -9,26 +9,29 @@
   # '';
   homebrew = {
     enable = true;
-    autoUpdate = true;
-    # brewPrefix = brewBinPrefix;
-    cleanup = "zap"; # "zap" removes manually installed brews and casks
+    onActivation =
+      {
+        autoUpdate = true;
+        # brewPrefix = brewBinPrefix;
+        cleanup = "uninstall"; # "zap" removes manually installed brews and casks
+        upgrade = true;
+      };
     brews = [
       "tmux-lazy-session"
-      "shopify-cli"
+      # "shopify-cli"
     ];
     casks = [
       # utilities
       "bartender" # hides mac bar icons
       "browserosaurus" # choose browser on each link
       "alfred"
-      #"firefox"
       "postman"
       "shottr" # screenshot tool
       "microsoft-teams"
       "zoom"
+      "hammerspoon"
       "iterm2"
       "notion"
-      "spotify"
       "amethyst"
       "discord"
       "fig"
@@ -41,6 +44,8 @@
     masApps = {
       Fantastical = 975937182;
       "Airmail 5" = 918858936;
+      "Amphetamine" = 937984704;
+      "TickTick:To-Do List, Calendar" = 966085870;
     };
 
     taps = [

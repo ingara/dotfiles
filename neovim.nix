@@ -15,22 +15,23 @@ in
     enable = true;
     viAlias = true;
     vimAlias = true;
-    extraConfig = "lua require('ingar/init')"; # Bootstraps my init.lua
+    extraConfig = "lua require('ingar/config')"; # Bootstraps my config.lua
 
     plugins = with pkgs.vimPlugins; [
-      fzf-vim
-      fzfWrapper
+      { plugin = fzf-vim; config = ""; }
+      { plugin = fzfWrapper; config = ""; }
 
       {
         plugin = telescope-nvim;
-        config = ''
-          require('telescope').load_extension('project')
-          require('telescope').load_extension('githubcoauthors')
-          require("telescope").load_extension("lazygit")
-        '';
-        type = "lua";
+        config = "";
+        # config = ''
+        #   require('telescope').load_extension('project')
+        #   require('telescope').load_extension('githubcoauthors')
+        #   require('telescope').load_extension('lazygit')
+        # '';
+        # type = "lua";
       }
-      telescope-project-nvim
+      #   telescope-project-nvim
 
       {
         plugin = dracula-vim;
@@ -38,26 +39,26 @@ in
           colorscheme dracula
         '';
       }
-      lualine-nvim
-      dashboard-nvim
+      { plugin = lualine-nvim; config = ""; }
+      { plugin = dashboard-nvim; config = ""; }
 
-      nvim-treesitter
+      { plugin = nvim-treesitter; config = ""; }
 
-      nvim-lspconfig
-      cmp-nvim-lsp
-      nvim-cmp
+      { plugin = nvim-lspconfig; config = ""; }
+      { plugin = cmp-nvim-lsp; config = ""; }
+      { plugin = nvim-cmp; config = ""; }
       {
         plugin = nvim-lightbulb;
         config = ''
           autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
         '';
       }
-      # TODO: LSP installer?
+      #   # TODO: LSP installer?
 
-      lazygit-nvim
+      { plugin = lazygit-nvim; config = ""; }
 
-      vim-surround
-      tmux-navigator
+      { plugin = vim-surround; config = ""; }
+      { plugin = tmux-navigator; config = ""; }
     ];
   };
 }

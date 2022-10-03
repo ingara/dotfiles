@@ -1,0 +1,10 @@
+customCommands:
+  - key: "!"
+    description: "Run git alias"
+    command: git {{index .PromptResponses 0}}
+    context: "global"
+    subprocess: true
+    stream: true
+    prompts:
+      - type: "input"
+        title: "Command (git alias)"

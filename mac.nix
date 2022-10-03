@@ -27,6 +27,9 @@
       NSAutomaticPeriodSubstitutionEnabled = false;
       NSAutomaticQuoteSubstitutionEnabled = false;
 
+      # Spelling correction is annoying
+      NSAutomaticSpellingCorrectionEnabled = false;
+
       # enable tap-to-click (mode 1)
       "com.apple.mouse.tapBehavior" = 1;
 
@@ -94,8 +97,8 @@
 
       # autohide instantly
       autohide = true;
-      autohide-delay = "0.0";
-      autohide-time-modifier = "0.4";
+      autohide-delay = 0.0;
+      autohide-time-modifier = 0.4;
 
       orientation = "left";
 
