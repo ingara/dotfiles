@@ -25,38 +25,35 @@ Then go to System Preferences -> Keyboard -> Input Sources -> + -> Other.
 
 ## Nix + nix-darwin + home manager
 
-### Install nix
+#### Bootstrapping
 
 ```shell
-$ sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
-```
-
-### Install nix-darwin
-
-```shell
-$ nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
-$ ./result/bin/darwin-installer
-$ rm -rf result
-```
-
-### Install nix-darwin home manager module
-
-```shell
-$ nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-$ nix-channel --update
+$ sh <(curl -L https://nixos.org/nix/install)
+$ mkdir -p ~/dev
+$ cd ~/dev
+$ git clone git@github.com:ingara/dotfiles.git
+$ cd dotfiles
+$ nix build .#darwinConfigurations.ingar.system
+# REBOOT if this reports that it cannot connect to Nix daemon
+$ ./result/sw/bin/darwin-rebuild switch --flake .#ingar # still in ~/dev/dotfiles
 ```
 
 ### Link the darwin configuration from dotfiles
 
 ```shell
-$ mv ~/.nixpkgs/darwin-configuration.nix ~/.nixpkgs/darwin-configuration.nix.bak
-$ ln -s ~/dev/dotfiles/darwin-configuration.nix ~/.nixpkgs/
+$ ln -s ~/dev/dotfiles/flake.nix ~/.nixpkgs/
 ```
 
 ### Install and configure stuff
 
 ```shell
 $ darwin-rebuild switch
+```
+
+### Updating
+
+```shell
+$ nix flake update
 ```
 
 ### References:
@@ -86,3 +83,6 @@ $ darwin-rebuild switch
 - https://github.com/jwiegley/nix-config
 - https://github.com/a-h/dotfiles
 - https://github.com/utdemir/dotfiles
+- https://gist.github.com/ksexton/89baeb4a8b518727242e4d933d49e315
+- https://github.com/the-nix-way/nome
+- https://github.com/fmoda3/nix-configs

@@ -19,6 +19,9 @@
     brews = [
       "tmux-lazy-session"
       # "shopify-cli"
+
+      # Should be removed when nix package is working
+      "qmk/qmk/qmk"
     ];
     casks = [
       # utilities
@@ -51,6 +54,7 @@
     taps = [
       "ingara/formulae"
       "shopify/shopify"
+      "qmk/qmk"
       # default
       "homebrew/bundle"
       "homebrew/cask"

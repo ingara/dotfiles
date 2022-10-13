@@ -9,7 +9,7 @@ in
     VISUAL = "nvim";
   };
 
-  xdg.configFile."nvim/lua/ingar".source = mkOutOfStoreSymlink ./configs/nvim/lua;
+  xdg.configFile."nvim/lua/ingar".source = builtins.trace config.xdg.configHome (mkOutOfStoreSymlink ./configs/nvim/lua);
 
   programs.neovim = {
     enable = true;
@@ -18,18 +18,17 @@ in
     extraConfig = "lua require('ingar/config')"; # Bootstraps my config.lua
 
     plugins = with pkgs.vimPlugins; [
-      { plugin = fzf-vim; config = ""; }
-      { plugin = fzfWrapper; config = ""; }
+      fzf-vim
+      fzfWrapper
 
       {
         plugin = telescope-nvim;
-        config = "";
-        # config = ''
-        #   require('telescope').load_extension('project')
-        #   require('telescope').load_extension('githubcoauthors')
-        #   require('telescope').load_extension('lazygit')
-        # '';
-        # type = "lua";
+        config = ''
+          require('telescope').load_extension('project')
+          require('telescope').load_extension('githubcoauthors')
+          require('telescope').load_extension('lazygit')
+        '';
+        type = "lua";
       }
       #   telescope-project-nvim
 
@@ -39,14 +38,14 @@ in
           colorscheme dracula
         '';
       }
-      { plugin = lualine-nvim; config = ""; }
-      { plugin = dashboard-nvim; config = ""; }
+      lualine-nvim
+      dashboard-nvim
 
-      { plugin = nvim-treesitter; config = ""; }
+      nvim-treesitter
 
-      { plugin = nvim-lspconfig; config = ""; }
-      { plugin = cmp-nvim-lsp; config = ""; }
-      { plugin = nvim-cmp; config = ""; }
+      nvim-lspconfig
+      cmp-nvim-lsp
+      nvim-cmp
       {
         plugin = nvim-lightbulb;
         config = ''
@@ -55,10 +54,10 @@ in
       }
       #   # TODO: LSP installer?
 
-      { plugin = lazygit-nvim; config = ""; }
+      lazygit-nvim
 
-      { plugin = vim-surround; config = ""; }
-      { plugin = tmux-navigator; config = ""; }
+      vim-surround
+      tmux-navigator
     ];
   };
 }

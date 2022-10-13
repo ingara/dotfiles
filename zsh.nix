@@ -1,9 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.zsh.enable
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
+    enableSyntaxHighlighting = true;
+
     shellAliases = {
       cat = "bat";
       g = "git";
@@ -21,6 +24,7 @@
         "colorize"
       ];
     };
+
     initExtra = ''
       nixify() {
         if [ ! -e ./.envrc ]; then

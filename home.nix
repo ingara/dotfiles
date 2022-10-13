@@ -12,14 +12,12 @@
     stateVersion = "22.11";
     # username = user;
     file = {
-      ".editorconfig".source = ./configs/.editorconfig;
-
       ideavimrc = {
         target = ".config/ideavim/ideavimrc";
         source = ./configs/.ideavimrc;
       };
 
-      ".config/lazygit/config.yml".source = ./configs/lazygit.yml;
+      # ".config/lazygit/config.yml".source = ./configs/lazygit.yml;
     };
 
     packages = with pkgs; [
@@ -32,7 +30,7 @@
       ripgrep
       terraform
       tldr
-      lazygit
+      # lazygit
       # magic-wormhole
       azure-cli
       # qmk # not working on aarch64-darwin
@@ -55,6 +53,26 @@
     };
   };
 
+  editorconfig = {
+    enable = true;
+    settings = {
+      # Unix-style newlines with a newline ending every file
+      "*" =
+        {
+          end_of_line = "lf";
+          charset = "utf-8";
+          indent_style = "space";
+          indent_size = 2;
+          trim_trailing_whitespace = true;
+          insert_final_newline = true;
+        };
+
+      "*.elm" = {
+        indent_size = 4;
+      };
+    };
+  };
+
   programs = {
     # Let home-manager manage itself
     home-manager.enable = true;
@@ -62,21 +80,27 @@
     bat.enable = true;
     jq.enable = true;
     # lazygit.enable = true;
-    # lazygit = {
-    #   enable = true;
-      # settings = ''
-      #   customCommands:
-      #     - key: "!"
-      #       description: "Run git alias"
-      #       command: git {{index .PromptResponses 0}}
-      #       context: "global"
-      #       subprocess: true
-      #       stream: true
-      #       prompts:
-      #         - type: "input"
-      #           title: "Command (git alias)"
-      # '';
-    # };
+    lazygit = {
+      enable = true;
+
+      # settings = (builtins.readFile ./configs/lazygit.yml);
+      settings = {
+        customCommands = [
+          {
+            key = "!";
+            description = "Run git alias";
+            command = "git {{index .PromptResponses 0}}";
+            context = "global";
+            subprocess = true;
+            stream = true;
+            prompts = {
+              type = "input";
+              title = "Command (git alias)";
+            };
+          }
+        ];
+      };
+    };
 
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.exa.enable
     exa = {
