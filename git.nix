@@ -24,6 +24,11 @@
       "flake.nix"
     ];
 
+    signing = {
+      signByDefault = true;
+      key = "7A5F92617FB3E7A1";
+    };
+
     extraConfig = {
       core.editor = "nvim";
       init.defaultBranch = "main";

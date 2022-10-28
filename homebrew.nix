@@ -22,6 +22,8 @@
 
       # Should be removed when nix package is working
       "qmk/qmk/qmk"
+
+      "teller"
     ];
     casks = [
       # utilities
@@ -55,6 +57,7 @@
       "ingara/formulae"
       "shopify/shopify"
       "qmk/qmk"
+      "spectralops/tap" # Teller
       # default
       "homebrew/bundle"
       "homebrew/cask"

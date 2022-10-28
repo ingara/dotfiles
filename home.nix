@@ -36,6 +36,7 @@
       # qmk # not working on aarch64-darwin
       ngrok
       shopify-cli
+      miniserve
 
       # Better userland for macOS
       coreutils
@@ -79,7 +80,12 @@
 
     bat.enable = true;
     jq.enable = true;
-    # lazygit.enable = true;
+
+    gpg = {
+      enable = true;
+    };
+
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.lazygit.enable
     lazygit = {
       enable = true;
 
@@ -93,10 +99,12 @@
             context = "global";
             subprocess = true;
             stream = true;
-            prompts = {
-              type = "input";
-              title = "Command (git alias)";
-            };
+            prompts = [
+              {
+                type = "input";
+                title = "Command (git alias)";
+              }
+            ];
           }
         ];
       };
