@@ -8,6 +8,8 @@
     ./zsh.nix
   ];
 
+  # xdg.configFile."skhd/skhdrc".source = ./configs/skhdrc;
+
   home = {
     stateVersion = "22.11";
     # username = user;
@@ -16,8 +18,10 @@
         target = ".config/ideavim/ideavimrc";
         source = ./configs/.ideavimrc;
       };
+      ".config/skhd/skhdrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/skhdrc";
 
       # ".config/lazygit/config.yml".source = ./configs/lazygit.yml;
+      # ".config/lazygit/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/lazygit.yml";
     };
 
     packages = with pkgs; [
@@ -28,15 +32,26 @@
       nixpkgs-fmt
       nodejs-16_x
       ripgrep
-      terraform
-      tldr
-      # lazygit
       # magic-wormhole
       azure-cli
       # qmk # not working on aarch64-darwin
       ngrok
       shopify-cli
       miniserve
+      pre-commit
+
+      ##TF
+      # terraform
+      # tfenv # installed with brew
+      tflint
+      terragrunt
+
+
+      # k8s stuff
+      kubectl
+      kubecolor
+      kubectx
+      yq
 
       # Better userland for macOS
       coreutils
@@ -113,7 +128,7 @@
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.exa.enable
     exa = {
       enable = true;
-      enableAliases = true;
+      enableAliases = false; # defining my own aliases in zsh.nix
     };
 
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
@@ -130,5 +145,14 @@
       #   };
       # };
     };
+
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.k9s.enable
+    k9s.enable = true;
+
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.tealdeer.enable
+    tealdeer.enable = true;
+
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.broot.enable
+    broot.enable = true;
   };
 }

@@ -4,9 +4,6 @@
 #   brewBinPrefix = if pkgs.system == "aarch64-darwin" then "/opt/homebrew/bin" else "/usr/local/bin";
 # in
 {
-  # environment.shellInit = ''
-  #   eval "$(${brewBinPrefix}/brew shellenv)"
-  # '';
   homebrew = {
     enable = true;
     onActivation =
@@ -24,12 +21,20 @@
       "qmk/qmk/qmk"
 
       "teller"
+      "tfenv"
+      "checkov"
+
+      "padok-team/tap/tfautomv"
+
+      "koekeishiya/formulae/skhd"
+      "koekeishiya/formulae/yabai"
     ];
     casks = [
       # utilities
       "bartender" # hides mac bar icons
       "browserosaurus" # choose browser on each link
       "alfred"
+      "raycast"
       "postman"
       "shottr" # screenshot tool
       "microsoft-teams"
@@ -37,13 +42,15 @@
       "hammerspoon"
       "iterm2"
       "notion"
-      "amethyst"
       "discord"
       "fig"
       "visual-studio-code"
       "jetbrains-toolbox"
       "google-chrome"
       "istat-menus"
+      "rapidapi"
+      "1password"
+      "authy"
     ];
     # Mac App Store
     masApps = {
@@ -51,6 +58,8 @@
       "Airmail 5" = 918858936;
       "Amphetamine" = 937984704;
       "TickTick:To-Do List, Calendar" = 966085870;
+      "Spotica Menu" = 570549457;
+      "Balance Lock" = 1019371109;
     };
 
     taps = [
@@ -58,6 +67,8 @@
       "shopify/shopify"
       "qmk/qmk"
       "spectralops/tap" # Teller
+      "padok-team/tap" # RapidAPI
+      "koekeishiya/formulae" # yabai/skhd
       # default
       "homebrew/bundle"
       "homebrew/cask"

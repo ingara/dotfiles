@@ -21,6 +21,11 @@
     # Use a custom configuration.nix location.
     # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
     darwinConfig = "$HOME/.nixpkgs/darwin-configuration.nix";
+
+    systemPackages = [
+      pkgs.yabai
+      # pkgs.skhd
+    ];
   };
 
   nix = {

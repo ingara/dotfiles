@@ -14,6 +14,16 @@
       tls = "tmux-lazy-session";
       tf = "terraform";
       lg = "lazygit";
+      kubectl = "kubecolor";
+      br = "broot";
+
+      # Exa stuff
+      ls = "exa";
+      l = "exa -l --all --group-directories-first --git";
+      ll = "exa -l --all --all --group-directories-first --git";
+      lt = "exa -T --git-ignore --level=2 --group-directories-first";
+      llt = "exa -lT --git-ignore --level=2 --group-directories-first";
+      lT = "exa -T --git-ignore --level=4 --group-directories-first";
     };
     oh-my-zsh = {
       enable = true;
@@ -22,6 +32,7 @@
         "git"
         "sudo"
         "colorize"
+        "kubectl"
       ];
     };
 

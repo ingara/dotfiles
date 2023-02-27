@@ -9,55 +9,77 @@ in
     VISUAL = "nvim";
   };
 
-  xdg.configFile."nvim/lua/ingar".source = builtins.trace config.xdg.configHome (mkOutOfStoreSymlink ./configs/nvim/lua);
+  # home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/nvim";
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/nvim";
+  programs.neovim =
+    {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+    };
 
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    extraConfig = "lua require('ingar/config')"; # Bootstraps my config.lua
+  # xdg.configFile."nvim/lua/config.lua".source = mkOutOfStoreSymlink ./configs/nvim/lua/config.lua;
+  # xdg.configFile."nvim/init.lua".source = mkOutOfStoreSymlink ./configs/nvim/lua/config.lua;
+  # xdg.configFile."nvim/lua" = {
+  #   source = ./configs/nvim/lua;
+  #   recursive = true;
+  # };
 
-    plugins = with pkgs.vimPlugins; [
-      fzf-vim
-      fzfWrapper
+  # programs.neovim =
+  #   {
+  #     enable = true;
+  #     viAlias = true;
+  #     vimAlias = true;
+  #     # extraConfig = "lua require('config')"; # Bootstraps my config.lua
+  #     # extraConfig = ''
+  #     #   :luafile ~/.config/nvim/lua/config.lua
+  #     # '';
+  #     # extraConfig = "lua << EOF\n" + builtins.readFile ./configs/nvim/lua/config.lua + "\nEOF";
+  #     # extraConfig = ":luafile ~/.config/nvim/lua/config.lua";
 
-      {
-        plugin = telescope-nvim;
-        config = ''
-          require('telescope').load_extension('project')
-          require('telescope').load_extension('githubcoauthors')
-          require('telescope').load_extension('lazygit')
-        '';
-        type = "lua";
-      }
-      #   telescope-project-nvim
+  #     plugins = with pkgs.vimPlugins;
+  #       [
+  #         fzf-vim
+  #         fzfWrapper
 
-      {
-        plugin = dracula-vim;
-        config = ''
-          colorscheme dracula
-        '';
-      }
-      lualine-nvim
-      dashboard-nvim
+  #         {
+  #           plugin = telescope-nvim;
+  #           config = ''
 
-      nvim-treesitter
+  #         require('telescope').load_extension('project')
+  #         require('telescope').load_extension('githubcoauthors')
+  #         require('telescope').load_extension('lazygit')
+  #       '';
+  #           type = "lua";
+  #         }
+  #         #   telescope-project-nvim
 
-      nvim-lspconfig
-      cmp-nvim-lsp
-      nvim-cmp
-      {
-        plugin = nvim-lightbulb;
-        config = ''
-          autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
-        '';
-      }
-      #   # TODO: LSP installer?
+  #         {
+  #           plugin = dracula-vim;
+  #           config = ''
+  #             colorscheme dracula
+  #           '';
+  #         }
+  #         lualine-nvim
+  #         dashboard-nvim
 
-      lazygit-nvim
+  #         nvim-treesitter
 
-      vim-surround
-      tmux-navigator
-    ];
-  };
+  #         nvim-lspconfig
+  #         cmp-nvim-lsp
+  #         nvim-cmp
+  #         {
+  #           plugin = nvim-lightbulb;
+  #           config = ''
+  #             autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+  #           '';
+  #         }
+  #         #   # TODO: LSP installer?
+
+  #         lazygit-nvim
+
+  #         vim-surround
+  #         tmux-navigator
+  #       ];
+  #   };
 }
