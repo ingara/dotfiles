@@ -5,7 +5,7 @@
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
 
     shellAliases = {
       cat = "bat";
@@ -17,13 +17,13 @@
       kubectl = "kubecolor";
       br = "broot";
 
-      # Exa stuff
-      ls = "exa";
-      l = "exa -l --all --group-directories-first --git";
-      ll = "exa -l --all --all --group-directories-first --git";
-      lt = "exa -T --git-ignore --level=2 --group-directories-first";
-      llt = "exa -lT --git-ignore --level=2 --group-directories-first";
-      lT = "exa -T --git-ignore --level=4 --group-directories-first";
+      # Eza stuff
+      ls = "eza";
+      l = "eza -l --all --group-directories-first --git";
+      ll = "eza -l --all --all --group-directories-first --git";
+      lt = "eza -T --git-ignore --level=2 --group-directories-first";
+      llt = "eza -lT --git-ignore --level=2 --group-directories-first";
+      lT = "eza -T --git-ignore --level=4 --group-directories-first";
     };
     oh-my-zsh = {
       enable = true;
@@ -73,6 +73,7 @@
     # Disable starship until fixed: https://github.com/NixOS/nixpkgs/issues/160876, https://github.com/NixOS/nixpkgs/issues/146349
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
 
     settings = {
       directory = {

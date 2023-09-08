@@ -6,6 +6,7 @@
     ./neovim.nix
     ./tmux.nix
     ./zsh.nix
+    ./fish.nix
   ];
 
   # xdg.configFile."skhd/skhdrc".source = ./configs/skhdrc;
@@ -19,9 +20,7 @@
         source = ./configs/.ideavimrc;
       };
       ".config/skhd/skhdrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/skhdrc";
-
-      # ".config/lazygit/config.yml".source = ./configs/lazygit.yml;
-      # ".config/lazygit/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/lazygit.yml";
+      ".config/lazygit/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/lazygit.yml";
     };
 
     packages = with pkgs; [
@@ -30,7 +29,7 @@
       fd
       htop
       nixpkgs-fmt
-      nodejs-16_x
+      nodejs_18
       ripgrep
       # magic-wormhole
       azure-cli
@@ -39,6 +38,8 @@
       shopify-cli
       miniserve
       pre-commit
+      wireguard-tools
+      act # https://github.com/nektos/act
 
       ##TF
       # terraform
@@ -61,6 +62,7 @@
 
       # npm stuff
       nodePackages.vercel
+      nodePackages_latest.pnpm
     ];
 
     sessionVariables = {
@@ -86,6 +88,12 @@
       "*.elm" = {
         indent_size = 4;
       };
+      "*.kts?" = {
+        indent_size = 4;
+      };
+      "*.swift" = {
+        indent_size = 4;
+      };
     };
   };
 
@@ -103,26 +111,6 @@
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.lazygit.enable
     lazygit = {
       enable = true;
-
-      # settings = (builtins.readFile ./configs/lazygit.yml);
-      settings = {
-        customCommands = [
-          {
-            key = "!";
-            description = "Run git alias";
-            command = "git {{index .PromptResponses 0}}";
-            context = "global";
-            subprocess = true;
-            stream = true;
-            prompts = [
-              {
-                type = "input";
-                title = "Command (git alias)";
-              }
-            ];
-          }
-        ];
-      };
     };
 
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.exa.enable
@@ -154,5 +142,21 @@
 
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.broot.enable
     broot.enable = true;
+
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.rbenv.enable
+    rbenv = {
+      enable = true;
+      plugins = [
+        {
+          name = "ruby-build";
+          src = pkgs.fetchFromGitHub {
+            owner = "rbenv";
+            repo = "ruby-build";
+            rev = "v20221225";
+            hash = "sha256-Kuq0Z1kh2mvq7rHEgwVG9XwzR5ZUtU/h8SQ7W4/mBU0=";
+          };
+        }
+      ];
+    };
   };
 }

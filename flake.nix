@@ -3,7 +3,7 @@
 
   inputs = {
     # Package sets
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-22.05-darwin";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
     nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
@@ -86,6 +86,22 @@
             inherit (prev.stdenv) system;
             inherit (nixpkgsConfig) config;
           };
+
+          # 16.14 now requires experimental import assertions syntax, pin to 16.13
+          # https://github.com/nodejs/node/blob/main/doc/changelogs/CHANGELOG_V16.md
+          # nodejs-18_x = prev.nodejs-18_x.overrideAttrs (oldAttrs: rec {
+          #   version = "18.16.0";
+          #   name = "nodejs-${version}";
+
+          #   src = prev.fetchurl {
+          #     url = "https://nodejs.org/dist/v${version}/node-v${version}.tar.xz";
+          #     sha256 = "sha256-M9gaIz4jWlCa3aSk8iCQCNBFkZed5rPw9nwckGCT8Rg=";
+          #   };
+
+          #   patches = [
+          #     (prev.lib.head oldAttrs.patches)
+          #   ];
+          # });
         };
         pkgs-stable = final: prev: {
           pkgs-stable = import inputs.nixpkgs-stable {
@@ -106,6 +122,7 @@
             inherit (nixpkgsConfig) config;
           };
         };
+
       };
     } // utils.lib.eachDefaultSystem (system: {
       legacyPackages = import inputs.nixpkgs-unstable {

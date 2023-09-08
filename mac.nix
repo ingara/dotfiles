@@ -100,7 +100,7 @@
       autohide-delay = 0.0;
       autohide-time-modifier = 0.4;
 
-      orientation = "left";
+      orientation = "bottom";
 
       mouse-over-hilite-stack = true;
     };

@@ -1,15 +1,11 @@
 { config, pkgs, lib, ... }:
 
-# let
-#   brewBinPrefix = if pkgs.system == "aarch64-darwin" then "/opt/homebrew/bin" else "/usr/local/bin";
-# in
 {
   homebrew = {
     enable = true;
     onActivation =
       {
         autoUpdate = true;
-        # brewPrefix = brewBinPrefix;
         cleanup = "uninstall"; # "zap" removes manually installed brews and casks
         upgrade = true;
       };
@@ -28,11 +24,15 @@
 
       "koekeishiya/formulae/skhd"
       "koekeishiya/formulae/yabai"
+
+      # iOS
+      "licenseplist"
     ];
     casks = [
       # utilities
       "bartender" # hides mac bar icons
-      "browserosaurus" # choose browser on each link
+      # "browserosaurus" # choose browser on each link
+      "brave-browser"
       "alfred"
       "raycast"
       "postman"
@@ -51,6 +51,7 @@
       "rapidapi"
       "1password"
       "authy"
+      "elgato-stream-deck"
     ];
     # Mac App Store
     masApps = {
@@ -60,6 +61,7 @@
       "TickTick:To-Do List, Calendar" = 966085870;
       "Spotica Menu" = 570549457;
       "Balance Lock" = 1019371109;
+      "Velja" = 1607635845;
     };
 
     taps = [

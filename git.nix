@@ -65,14 +65,16 @@
       restore-file = ''!git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"'';
 
       # From https://github.com/not-an-aardvark/git-delete-squashed
-      delete-squashed = ''!f() { DEFAULT=$(git default); local targetBranch=''${1-$DEFAULT} && git checkout -q $targetBranch && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base $targetBranch $branch) && [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done; }; f'';
+      delete-squashed = ''!f() { DEFAULT=$(git default); local targetBranch=''${1-$DEFAULT} && git checkout -q $targetBranch && git branch --merged | grep -v "\*" | xargs --no-run-if-empty -n 1 git branch -d && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base $targetBranch $branch) && [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done; }; f'';
+      # From https://github.com/haacked/dotfiles/blob/main/git/gitconfig.aliases.symlink
+      delete-cleanmerged = ''!f() { DEFAULT=$(git default); git branch --merged ''${1-$DEFAULT} | grep -v " ''${1-$DEFAULT}$" | xargs --no-run-if-empty git branch -d; }; f'';
 
       # Haacked aliases - https://github.com/haacked/dotfiles/blob/main/git/gitconfig.aliases.symlink
       abort = "rebase --abort";
       aliases = "!git config -l | grep ^alias\\. | cut -c 7-";
       amend = "commit -a --amend";
       # Deletes all branches merged into the specified branch (or the default branch if no branch is specified)
-      bclean = ''!f() { DEFAULT=$(git default); git branch --merged ''${1-$DEFAULT} | grep -v " ''${1-$DEFAULT}$" | xargs git branch -d; }; f'';
+      bclean = "!f() { DEFAULT=$(git default); git delete-cleanmerged \${1-$DEFAULT} && git delete-squashed \${1-$DEFAULT}; }; f";
       # Switches to specified branch (or the dafult branch if no branch is specified), runs git up, then runs bclean.
       bdone = "!f() { DEFAULT=$(git default); git checkout \${1-$DEFAULT} && git up && git bclean \${1-$DEFAULT}; }; f";
       # Lists all branches including remote branches
