@@ -5,22 +5,33 @@
     ./git.nix
     ./neovim.nix
     ./tmux.nix
-    ./zsh.nix
-    ./fish.nix
+    ./shell.nix
   ];
-
-  # xdg.configFile."skhd/skhdrc".source = ./configs/skhdrc;
 
   home = {
     stateVersion = "22.11";
-    # username = user;
     file = {
+      hammerspoon = {
+        source = ./configs/hammerspoon;
+        target = ".hammerspoon";
+        recursive = true;
+      };
       ideavimrc = {
         target = ".config/ideavim/ideavimrc";
         source = ./configs/.ideavimrc;
       };
+      yabai = {
+        executable = true;
+        target = ".config/yabai/yabairc";
+        text = ''
+          yabai -m rule --add app="^System Preferences$" manage=off
+          yabai -m rule --add app="^Alacritty$" manage=off
+          yabai -m rule --add app="^1Password$" manage=off
+        '';
+      };
       ".config/skhd/skhdrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/skhdrc";
       ".config/lazygit/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/lazygit.yml";
+      ".config/alacritty.yml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/alacritty.yml";
     };
 
     packages = with pkgs; [
@@ -40,6 +51,7 @@
       pre-commit
       wireguard-tools
       act # https://github.com/nektos/act
+      git-absorb
 
       ##TF
       # terraform
@@ -63,11 +75,15 @@
       # npm stuff
       nodePackages.vercel
       nodePackages_latest.pnpm
+
+      # yabai
+      # skhd
     ];
 
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
+      XDG_CONFIG_HOME = "$HOME/.config";
     };
   };
 
@@ -113,8 +129,8 @@
       enable = true;
     };
 
-    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.exa.enable
-    exa = {
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.eza.enable
+    eza = {
       enable = true;
       enableAliases = false; # defining my own aliases in zsh.nix
     };
@@ -126,13 +142,10 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
-      # config = {
-      #   global = {
-      #     skip_dotenv = true;
-      #     load_dotenv = false;
-      #   };
-      # };
     };
+
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.alacritty.enable
+    alacritty.enable = true;
 
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.k9s.enable
     k9s.enable = true;

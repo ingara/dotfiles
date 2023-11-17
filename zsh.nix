@@ -70,7 +70,6 @@
 
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.starship.enable
   programs.starship = {
-    # Disable starship until fixed: https://github.com/NixOS/nixpkgs/issues/160876, https://github.com/NixOS/nixpkgs/issues/146349
     enable = true;
     enableZshIntegration = true;
     enableFishIntegration = true;
@@ -88,7 +87,16 @@
         };
       };
 
-      aws = { format = "\\[[$symbol($profile)(($region))([$duration])]($style)\\]"; };
+      shell =
+        {
+          disabled = false;
+          fish_indicator = "🐟";
+          zsh_indicator = "𝓏";
+        };
+
+      aws = {
+        format = "\\[[$symbol($profile)(($region))([$duration])]($style)\\]";
+      };
 
       c = { format = "\\[[$symbol($version(-$name))]($style)\\]"; };
 

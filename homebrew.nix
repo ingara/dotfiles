@@ -31,13 +31,12 @@
     casks = [
       # utilities
       "bartender" # hides mac bar icons
-      # "browserosaurus" # choose browser on each link
-      "brave-browser"
-      "alfred"
+      # "firefox"
+      "firefox-developer-edition"
       "raycast"
       "postman"
       "shottr" # screenshot tool
-      "microsoft-teams"
+      # "microsoft-teams"
       "zoom"
       "hammerspoon"
       "iterm2"
@@ -71,11 +70,12 @@
       "spectralops/tap" # Teller
       "padok-team/tap" # RapidAPI
       "koekeishiya/formulae" # yabai/skhd
+      "homebrew/cask-versions"
       # default
       "homebrew/bundle"
-      "homebrew/cask"
+      # "homebrew/cask"
       "homebrew/cask-drivers"
-      "homebrew/core"
+      # "homebrew/core"
       "homebrew/services"
     ];
   };

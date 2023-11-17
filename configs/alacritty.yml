@@ -1,0 +1,71 @@
+window:
+  dimensions:
+    lines: 0
+    columns: 0
+  position:
+    x: 0
+    y: 0
+  padding:
+    x: 5
+    y: 5
+  opacity: 0.9
+  decorations: none
+  live_config_reload: true
+
+key_bindings:
+  - { mods: Command, key: Return, action: ToggleSimpleFullscreen }
+  - { mods: Command, key: N, action: CreateNewWindow }
+
+font:
+  # normal: { family: "Hack Nerd Font Mono", style: "Regular" }
+  # bold: { family: "Hack Nerd Font Mono", style: "Bold" }
+  # italic: { family: "Hack Nerd Font Mono", style: "Italic" }
+  normal: { family: "Hack Nerd Font Mono", style: "Regular" }
+  bold: { family: "Hack Nerd Font Mono", style: "Bold" }
+  italic: { family: "Hack Nerd Font Mono", style: "Italic" }
+
+hints:
+  enabled:
+    - regex:
+        "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+        [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+      hyperlinks: true
+      command: open
+      post_processing: true
+      mouse:
+        enabled: true
+        mods: Command
+      # binding:
+      #   key: U
+      #   mods: Control|Shift
+
+      # font = let fontname = "SpaceMono Nerd Font Mono"; in
+      #   {
+      #     normal = { family = fontname; style = "Regular"; };
+      #     bold = { family = fontname; style = "Bold"; };
+      #     italic = { family = fontname; style = "Italic"; };
+      #     size = 12;
+      #   };
+
+      # key_bindings = [
+      #   {
+      #     key = "Return";
+      #     mods = "Command";
+      #     action = "ToggleSimpleFullscreen";
+      #   }
+      # ];
+
+      #   hints = {
+      #     enabled = [
+      #       {
+      #         hyperlinks = true;
+      #         command = "open";
+      #         post_processing = true;
+      #         mouse = {
+      #           enabled = true;
+      #           mods = "Command";
+      #         };
+      #       }
+      #     ];
+      #   };
+      # }

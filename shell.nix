@@ -14,6 +14,7 @@
       lg = "lazygit";
       kubectl = "kubecolor";
       br = "broot";
+      vim = "nvim";
 
       # Eza stuff
       ls = "eza";
@@ -23,6 +24,10 @@
       llt = "eza -lT --git-ignore --level=2 --group-directories-first";
       lT = "eza -T --git-ignore --level=4 --group-directories-first";
     };
+
+    shellInit = ''
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    '';
   };
 
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.zsh.enable
