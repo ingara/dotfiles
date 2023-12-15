@@ -26,7 +26,7 @@
       sidebar # prefix+<tab> and prefix+<backspace>
       tmux-fzf # prefix+F
       # tmux-thumbs # copy/pasting stuff. prefix+<space>
-      vim-tmux-navigator # Move around with <ctrl>+hjkl
+      # vim-tmux-navigator # Move around with <ctrl>+hjkl
       yank # Copy to system clipboard
     ];
   };
