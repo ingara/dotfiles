@@ -52,6 +52,7 @@
       wireguard-tools
       act # https://github.com/nektos/act
       git-absorb
+      k6
 
       ##TF
       # terraform
@@ -64,7 +65,7 @@
       kubectl
       kubecolor
       kubectx
-      yq
+      yq-go
 
       # Better userland for macOS
       coreutils

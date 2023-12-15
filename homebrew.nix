@@ -51,6 +51,7 @@
       "1password"
       "authy"
       "elgato-stream-deck"
+      "signal"
     ];
     # Mac App Store
     masApps = {
