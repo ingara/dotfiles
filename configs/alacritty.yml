@@ -16,13 +16,97 @@ key_bindings:
   - { mods: Command, key: Return, action: ToggleSimpleFullscreen }
   - { mods: Command, key: N, action: CreateNewWindow }
 
+  # /etc/profiles/per-user/ingar/bin/tmux
+  # Use `<cmd + 1~9>` to switch tmux window
+  - {
+      key: Key1,
+      mods: Command,
+      command:
+        {
+          program: "/etc/profiles/per-user/ingar/bin/tmux",
+          args: ["select-window", "-t 0"],
+        },
+    }
+  - {
+      key: Key2,
+      mods: Command,
+      command:
+        {
+          program: "/etc/profiles/per-user/ingar/bin/tmux",
+          args: ["select-window", "-t 1"],
+        },
+    }
+  - {
+      key: Key3,
+      mods: Command,
+      command:
+        {
+          program: "/etc/profiles/per-user/ingar/bin/tmux",
+          args: ["select-window", "-t 2"],
+        },
+    }
+  - {
+      key: Key4,
+      mods: Command,
+      command:
+        {
+          program: "/etc/profiles/per-user/ingar/bin/tmux",
+          args: ["select-window", "-t 3"],
+        },
+    }
+  - {
+      key: Key5,
+      mods: Command,
+      command:
+        {
+          program: "/etc/profiles/per-user/ingar/bin/tmux",
+          args: ["select-window", "-t 4"],
+        },
+    }
+  - {
+      key: Key6,
+      mods: Command,
+      command:
+        {
+          program: "/etc/profiles/per-user/ingar/bin/tmux",
+          args: ["select-window", "-t 5"],
+        },
+    }
+  - {
+      key: Key7,
+      mods: Command,
+      command:
+        {
+          program: "/etc/profiles/per-user/ingar/bin/tmux",
+          args: ["select-window", "-t 6"],
+        },
+    }
+  - {
+      key: Key8,
+      mods: Command,
+      command:
+        {
+          program: "/etc/profiles/per-user/ingar/bin/tmux",
+          args: ["select-window", "-t 7"],
+        },
+    }
+  - {
+      key: Key9,
+      mods: Command,
+      command:
+        {
+          program: "/etc/profiles/per-user/ingar/bin/tmux",
+          args: ["select-window", "-t 8"],
+        },
+    }
+
 font:
   # normal: { family: "Hack Nerd Font Mono", style: "Regular" }
   # bold: { family: "Hack Nerd Font Mono", style: "Bold" }
   # italic: { family: "Hack Nerd Font Mono", style: "Italic" }
-  normal: { family: "Hack Nerd Font Mono", style: "Regular" }
-  bold: { family: "Hack Nerd Font Mono", style: "Bold" }
-  italic: { family: "Hack Nerd Font Mono", style: "Italic" }
+  normal: { family: "MonaspiceNe Nerd Font Mono", style: "Regular" }
+  bold: { family: "MonaspiceNe Nerd Font Mono", style: "Bold" }
+  italic: { family: "MonaspiceNe Nerd Font Mono", style: "Italic" }
 
 hints:
   enabled:
