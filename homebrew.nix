@@ -14,13 +14,13 @@
       # "shopify-cli"
 
       # Should be removed when nix package is working
-      "qmk/qmk/qmk"
+      # "qmk/qmk/qmk"
 
       "teller"
       "tfenv"
-      "checkov"
+      # "checkov"
 
-      "padok-team/tap/tfautomv"
+      # "padok-team/tap/tfautomv"
 
       "koekeishiya/formulae/skhd"
       "koekeishiya/formulae/yabai"
@@ -37,12 +37,11 @@
       "postman"
       "shottr" # screenshot tool
       # "microsoft-teams"
-      "zoom"
+      # "zoom"
       "hammerspoon"
       "iterm2"
       "notion"
       "discord"
-      "fig"
       "visual-studio-code"
       "jetbrains-toolbox"
       "google-chrome"
@@ -58,7 +57,7 @@
       Fantastical = 975937182;
       "Airmail 5" = 918858936;
       "Amphetamine" = 937984704;
-      "TickTick:To-Do List, Calendar" = 966085870;
+      # "TickTick:To-Do List, Calendar" = 966085870;
       "Spotica Menu" = 570549457;
       "Balance Lock" = 1019371109;
       "Velja" = 1607635845;
@@ -67,7 +66,7 @@
     taps = [
       "ingara/formulae"
       "shopify/shopify"
-      "qmk/qmk"
+      # "qmk/qmk"
       "spectralops/tap" # Teller
       "padok-team/tap" # RapidAPI
       "koekeishiya/formulae" # yabai/skhd

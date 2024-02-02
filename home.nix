@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   imports = [
     ./fzf.nix
@@ -7,6 +7,24 @@
     ./tmux.nix
     ./shell.nix
   ];
+
+#   terraform-config-inspect = buildGoModule rec {
+#     name = "terraform-config-inspect";
+#     version = "latest";
+#
+#     src = fetchFromGitHub {
+#       owner = "hashicorp";
+#       repo = "terraform-config-inspect";
+#       rev = "a34142ec2a72dd916592afd3247dd354f1cc7e5c";
+#       hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+#     };
+#
+#     vendorHash = null;
+#
+#     # doCheck = false;
+#     # goPackagePath = "github.com/hashicorp/terraform-config-inspect";
+#   };
+
 
   home = {
     stateVersion = "22.11";
@@ -43,14 +61,14 @@
       nodejs_18
       ripgrep
       # magic-wormhole
-      azure-cli
+      pkgs.pkgs-stable.azure-cli
       # qmk # not working on aarch64-darwin
       ngrok
-      shopify-cli
+      pkgs.pkgs-stable.shopify-cli
       miniserve
       pre-commit
       wireguard-tools
-      act # https://github.com/nektos/act
+      # act # https://github.com/nektos/act
       git-absorb
       k6
 
@@ -79,6 +97,33 @@
 
       # yabai
       # skhd
+
+      (buildGoModule rec {
+        name = "terraform-config-inspect";
+        version = "latest";
+
+        src = fetchFromGitHub {
+          owner = "hashicorp";
+          repo = "terraform-config-inspect";
+          rev = "a34142ec2a72dd916592afd3247dd354f1cc7e5c";
+          hash = "sha256-+NsVQ3K7fiQjI/41kPV3iAzFO3Z3Z4oeUA5gJgR+EyU=";
+        };
+
+        vendorHash = "sha256-JO02/PrlyFpQnNAb0ZZ8sfGiMmGjtbhwmAasWkHPg1A=";
+      })
+      (buildGoModule rec {
+        pname = "updo";
+        version = "0.1.1";
+
+        src = fetchFromGitHub {
+          owner = "Owloops";
+          repo = "updo";
+          rev = "v${version}";
+          hash = "sha256-sZfCtN7f80Qla6qzrl2iQ7V+lJeaDYA0DAAbiVXuxRQ=";
+        };
+
+        vendorHash = "sha256-lkNvVAtq4CxQQ8Buw+waWbId0XdLRnN/w6pE6C8fEgA=";
+      })
     ];
 
     sessionVariables = {
@@ -137,7 +182,9 @@
     };
 
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
-    htop.enable = true;
+    htop.enable = false;
+    # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.bottom.enable
+    bottom.enable = true;
 
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.direnv.enable
     direnv = {
@@ -155,7 +202,10 @@
     tealdeer.enable = true;
 
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.broot.enable
-    broot.enable = true;
+    # TODO: enable when unbroken
+    broot = {
+      enable = true;
+    };
 
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.rbenv.enable
     rbenv = {

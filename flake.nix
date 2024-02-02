@@ -10,6 +10,9 @@
     # Utils
     utils.url = "github:numtide/flake-utils";
 
+    # Neovim nightly
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
     # Environment/system management
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -40,7 +43,9 @@
               nix-index
               niv;
           })
-        );
+        ) ++ [
+          inputs.neovim-nightly-overlay.overlay
+        ];
         # overlays = [
         #   (
         #     final: prev:

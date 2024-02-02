@@ -23,6 +23,8 @@
       lt = "eza -T --git-ignore --level=2 --group-directories-first";
       llt = "eza -lT --git-ignore --level=2 --group-directories-first";
       lT = "eza -T --git-ignore --level=4 --group-directories-first";
+
+      cdg = "cd $(git rev-parse --show-toplevel)";
     };
 
     shellInit = ''

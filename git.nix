@@ -1,11 +1,11 @@
 { pkgs, ... }:
 
 {
-  # home.packages = [
-  #   pkgs.gh
-  #   pkgs.git
-  # ];
-  programs.gh.enable = true;
+  home.packages = [
+    pkgs.gh
+    # pkgs.git
+  ];
+  programs.gh.enable = false;
   programs.git = {
     enable = true;
     userName = "Ingar Mathisen Almklov";
