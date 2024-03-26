@@ -27,6 +27,8 @@
 
       # iOS
       "licenseplist"
+
+      "oven-sh/bun/bun"
     ];
     casks = [
       # utilities
