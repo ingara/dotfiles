@@ -6,25 +6,8 @@
     ./neovim.nix
     ./tmux.nix
     ./shell.nix
+    ./dotfiles.nix
   ];
-
-#   terraform-config-inspect = buildGoModule rec {
-#     name = "terraform-config-inspect";
-#     version = "latest";
-#
-#     src = fetchFromGitHub {
-#       owner = "hashicorp";
-#       repo = "terraform-config-inspect";
-#       rev = "a34142ec2a72dd916592afd3247dd354f1cc7e5c";
-#       hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-#     };
-#
-#     vendorHash = null;
-#
-#     # doCheck = false;
-#     # goPackagePath = "github.com/hashicorp/terraform-config-inspect";
-#   };
-
 
   home = {
     stateVersion = "22.11";
@@ -34,22 +17,6 @@
         target = ".hammerspoon";
         recursive = true;
       };
-      ideavimrc = {
-        target = ".config/ideavim/ideavimrc";
-        source = ./configs/.ideavimrc;
-      };
-      yabai = {
-        executable = true;
-        target = ".config/yabai/yabairc";
-        text = ''
-          yabai -m rule --add app="^System Preferences$" manage=off
-          yabai -m rule --add app="^Alacritty$" manage=off
-          yabai -m rule --add app="^1Password$" manage=off
-        '';
-      };
-      ".config/skhd/skhdrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/skhdrc";
-      ".config/lazygit/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/lazygit.yml";
-      ".config/alacritty.yml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/alacritty.yml";
     };
 
     packages = with pkgs; [
@@ -61,7 +28,7 @@
       nodejs_18
       ripgrep
       # magic-wormhole
-      pkgs.pkgs-stable.azure-cli
+      azure-cli
       # qmk # not working on aarch64-darwin
       ngrok
       pkgs.pkgs-stable.shopify-cli
@@ -178,7 +145,6 @@
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.eza.enable
     eza = {
       enable = true;
-      enableAliases = false; # defining my own aliases in zsh.nix
     };
 
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
@@ -221,6 +187,18 @@
           };
         }
       ];
+    };
+
+    zellij = {
+      enable = true;
+      # Will autostart zellij on shell open
+      enableFishIntegration = false;
+      enableZshIntegration = false;
+    };
+
+    # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zoxide.enable
+    zoxide = {
+      enable = true;
     };
   };
 }

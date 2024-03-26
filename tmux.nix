@@ -8,7 +8,6 @@
     escapeTime = 0;
     keyMode = "vi";
     shortcut = "a";
-    terminal = "screen-256color";
     extraConfig = (builtins.readFile ./configs/tmux.conf);
     plugins = with pkgs.tmuxPlugins; [
       {
@@ -28,6 +27,7 @@
       # tmux-thumbs # copy/pasting stuff. prefix+<space>
       vim-tmux-navigator # Move around with <ctrl>+hjkl
       yank # Copy to system clipboard
+      fzf-tmux-url # Find URLS with prefix+u
     ];
   };
 }

@@ -9,7 +9,6 @@ in
     VISUAL = "nvim";
   };
 
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/configs/nvim";
   programs.neovim =
     {
       enable = true;

@@ -35,7 +35,7 @@
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.zsh.enable
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     shellAliases = {

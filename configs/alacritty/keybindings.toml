@@ -1,0 +1,76 @@
+[[keyboard.bindings]]
+action = "ToggleSimpleFullscreen"
+key = "Return"
+mods = "Command"
+
+[[keyboard.bindings]]
+key = "Key1"
+mods = "Command"
+
+[keyboard.bindings.command]
+args = ["select-window", "-t 0"]
+program = "/etc/profiles/per-user/ingar/bin/tmux"
+
+[[keyboard.bindings]]
+key = "Key2"
+mods = "Command"
+
+[keyboard.bindings.command]
+args = ["select-window", "-t 1"]
+program = "/etc/profiles/per-user/ingar/bin/tmux"
+
+[[keyboard.bindings]]
+key = "Key3"
+mods = "Command"
+
+[keyboard.bindings.command]
+args = ["select-window", "-t 2"]
+program = "/etc/profiles/per-user/ingar/bin/tmux"
+
+[[keyboard.bindings]]
+key = "Key4"
+mods = "Command"
+
+[keyboard.bindings.command]
+args = ["select-window", "-t 3"]
+program = "/etc/profiles/per-user/ingar/bin/tmux"
+
+[[keyboard.bindings]]
+key = "Key5"
+mods = "Command"
+
+[keyboard.bindings.command]
+args = ["select-window", "-t 4"]
+program = "/etc/profiles/per-user/ingar/bin/tmux"
+
+[[keyboard.bindings]]
+key = "Key6"
+mods = "Command"
+
+[keyboard.bindings.command]
+args = ["select-window", "-t 5"]
+program = "/etc/profiles/per-user/ingar/bin/tmux"
+
+[[keyboard.bindings]]
+key = "Key7"
+mods = "Command"
+
+[keyboard.bindings.command]
+args = ["select-window", "-t 6"]
+program = "/etc/profiles/per-user/ingar/bin/tmux"
+
+[[keyboard.bindings]]
+key = "Key8"
+mods = "Command"
+
+[keyboard.bindings.command]
+args = ["select-window", "-t 7"]
+program = "/etc/profiles/per-user/ingar/bin/tmux"
+
+[[keyboard.bindings]]
+key = "Key9"
+mods = "Command"
+
+[keyboard.bindings.command]
+args = ["select-window", "-t 8"]
+program = "/etc/profiles/per-user/ingar/bin/tmux"
